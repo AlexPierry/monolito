@@ -32,4 +32,16 @@ export default class Product extends BaseEntity implements AggregateRoot {
     public get salesPrice(): number {
         return this._salesPrice;
     }
+
+    public set name(name: string) {
+        this._name = name;
+    }
+
+    public set description(description: string) {
+        this._description = description;
+    }
+
+    public set salesPrice(salesPrice: number) {
+        this._salesPrice = salesPrice;
+    }
 }
