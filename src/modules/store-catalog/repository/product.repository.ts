@@ -32,7 +32,5 @@ export default class ProductRepository implements ProductGateway {
             description: product.description,
             salesPrice: product.salesPrice
         });
-
     }
-
 }
