@@ -3,7 +3,6 @@ import ClientModel from "../repository/client.model";
 import ClientRepository from "../repository/client.respository";
 import AddClientUsecase from "../usecase/add-client/add-client.usecase";
 import ClientAdmFacade from "./client-adm.facade";
-import FindClientUsecase from "../usecase/find-client/find-client.usecase";
 import ClientAdmFacadeFactory from "../factory/client-adm.facade.factory";
 
 describe("Client Adm Facade test", () => {
@@ -36,8 +35,14 @@ describe("Client Adm Facade test", () => {
         const input = {
             id: "1",
             name: "Client 1",
+            document: "doc 1",
             email: "x@x.com",
-            address: "Address 1"
+            street: "street 1",
+            number: "1",
+            complement: "complement 1",
+            city: "city 1",
+            state: "state 1",
+            zipCode: "zipcode 1"
         }
 
         await facade.add(input);
@@ -46,7 +51,7 @@ describe("Client Adm Facade test", () => {
         expect(clientDb.id).toBe(input.id);
         expect(clientDb.name).toBe(input.name);
         expect(clientDb.email).toBe(input.email);
-        expect(clientDb.address).toBe(input.address);
+        expect(clientDb.street).toBe(input.street);
     });
 
     it("should find a client", async () => {
@@ -64,8 +69,14 @@ describe("Client Adm Facade test", () => {
         const input = {
             id: "1",
             name: "Client 1",
+            document: "doc 1",
             email: "x@x.com",
-            address: "Address 1"
+            street: "street 1",
+            number: "1",
+            complement: "complement 1",
+            city: "city 1",
+            state: "state 1",
+            zipCode: "zipcode 1"
         }
 
         await facade.add(input);
@@ -75,7 +86,7 @@ describe("Client Adm Facade test", () => {
         expect(client.id).toBe(input.id);
         expect(client.name).toBe(input.name);
         expect(client.email).toBe(input.email);
-        expect(client.address).toBe(input.address);
+        expect(client.street).toBe(input.street);
     });
 
 });

@@ -28,7 +28,13 @@ describe("Client Repository test", () => {
             id: new Id("1"),
             name: "Client 1",
             email: "x@x.com",
-            address: "Address 1"
+            document: "doc 1",
+            street: "Street 1",
+            number: "1",
+            complement: "complement 1",
+            city: "city 1",
+            state: "state 1",
+            zipCode: "zipcode 1"
         });
 
         const repository = new ClientRepository();
@@ -38,7 +44,7 @@ describe("Client Repository test", () => {
         expect(clientDb.id).toBe(client.id.id);
         expect(clientDb.name).toBe(client.name);
         expect(clientDb.email).toBe(client.email);
-        expect(clientDb.address).toBe(client.address);
+        expect(clientDb.street).toBe(client.street);
         expect(clientDb.createdAt).toStrictEqual(client.createdAt);
         expect(clientDb.updatedAt).toStrictEqual(client.updatedAt);
     })
@@ -47,8 +53,14 @@ describe("Client Repository test", () => {
         await ClientModel.create({
             id: "1",
             name: "Client 1",
+            document: "doc 1",
             email: "x@x.com",
-            address: "Address 1",
+            street: "street 1",
+            number: "1",
+            complement: "complement 1",
+            city: "city 1",
+            state: "state 1",
+            zipCode: "zipcode 1",
             createdAt: new Date(),
             updatedAt: new Date()
         });
@@ -56,8 +68,14 @@ describe("Client Repository test", () => {
         await ClientModel.create({
             id: "2",
             name: "Client 2",
+            document: "doc 2",
             email: "y@y.com",
-            address: "Address 2",
+            street: "street 2",
+            number: "2",
+            complement: "complement 2",
+            city: "city 2",
+            state: "state 2",
+            zipCode: "zipcode 2",
             createdAt: new Date(),
             updatedAt: new Date()
         });
@@ -69,19 +87,25 @@ describe("Client Repository test", () => {
         expect(clients[0].id.id).toBe("1");
         expect(clients[0].name).toBe("Client 1");
         expect(clients[0].email).toBe("x@x.com");
-        expect(clients[0].address).toBe("Address 1");
+        expect(clients[0].street).toBe("street 1");
         expect(clients[1].id.id).toBe("2");
         expect(clients[1].name).toBe("Client 2");
         expect(clients[1].email).toBe("y@y.com");
-        expect(clients[1].address).toBe("Address 2");
+        expect(clients[1].street).toBe("street 2");
     });
 
     it("should find a client", async () => {
         const client = await ClientModel.create({
             id: "1",
             name: "Client 1",
+            document: "doc 1",
             email: "x@x.com",
-            address: "Address 1",
+            street: "street 1",
+            number: "1",
+            complement: "complement 1",
+            city: "city 1",
+            state: "state 1",
+            zipCode: "zipcode 1",
             createdAt: new Date(),
             updatedAt: new Date()
         });
@@ -93,6 +117,6 @@ describe("Client Repository test", () => {
         expect(result.id.id).toBe(client.id);
         expect(result.name).toBe(client.name);
         expect(result.email).toBe(client.email);
-        expect(result.address).toBe(client.address);
+        expect(result.street).toBe(client.street);
     });
 });
