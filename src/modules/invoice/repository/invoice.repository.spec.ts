@@ -1,6 +1,4 @@
 import { Sequelize } from "sequelize-typescript";
-import InvoiceItemModel from "./invoice.item.model";
-import AddressModel from "./address.model";
 import InvoiceModel from "./invoice.model";
 import Address from "../domain/address";
 import Invoice from "../domain/invoice";
@@ -18,7 +16,7 @@ describe("Invoice repository test", () => {
             sync: { force: true },
         });
 
-        sequelize.addModels([InvoiceModel, AddressModel, InvoiceItemModel]);
+        sequelize.addModels([InvoiceModel]);
         await sequelize.sync();
     });
 
@@ -29,7 +27,7 @@ describe("Invoice repository test", () => {
     it("Should generate an invoice", async () => {
         const repository = new InvoiceRepository();
 
-        const address = new Address("Street 1", 1, "Complement 1", "City 1", "State 1", "Zipcode 1");
+        const address = new Address("Street 1", "1", "Complement 1", "City 1", "State 1", "Zipcode 1");
         const item1 = new InvoiceItem({ name: "Item 1", price: 100 });
         const item2 = new InvoiceItem({ name: "Item 2", price: 50 });
         const invoice = new Invoice({
@@ -41,19 +39,19 @@ describe("Invoice repository test", () => {
 
         await repository.generate(invoice);
 
-        const result = await InvoiceModel.findOne({ where: { id: invoice.id.id }, include: ["items", "address"] })
+        const result = await InvoiceModel.findOne({ where: { id: invoice.id.id } })
 
         expect(result.id).toBeDefined();
         expect(result.id).toBe(invoice.id.id);
         expect(result.createdAt).toBeDefined();
         expect(result.name).toBe(invoice.name);
         expect(result.document).toBe(invoice.document);
-        expect(result.address.street).toBe(invoice.address.street);
-        expect(result.address.number).toBe(invoice.address.number);
-        expect(result.address.complement).toBe(invoice.address.complement);
-        expect(result.address.city).toBe(invoice.address.city);
-        expect(result.address.state).toBe(invoice.address.state);
-        expect(result.address.zipcode).toBe(invoice.address.zipCode);
+        expect(result.street).toBe(invoice.address.street);
+        expect(result.number).toBe(invoice.address.number);
+        expect(result.complement).toBe(invoice.address.complement);
+        expect(result.city).toBe(invoice.address.city);
+        expect(result.state).toBe(invoice.address.state);
+        expect(result.zipcode).toBe(invoice.address.zipCode);
         expect(result.items.length).toBe(2);
         expect(result.items[0].id).toBe(item1.id.id);
         expect(result.items[0].name).toBe(item1.name);
@@ -66,7 +64,7 @@ describe("Invoice repository test", () => {
     it("shoudl find an invoice", async () => {
         const repository = new InvoiceRepository();
 
-        const address = new Address("Street 1", 1, "Complement 1", "City 1", "State 1", "Zipcode 1");
+        const address = new Address("Street 1", "1", "Complement 1", "City 1", "State 1", "Zipcode 1");
         const item1 = new InvoiceItem({ name: "Item 1", price: 100 });
         const item2 = new InvoiceItem({ name: "Item 2", price: 50 });
         const invoice = new Invoice({

@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import { ProductModel } from "./product.model";
+import ProductModel from "./product.model";
 import Product from "../domain/product.entity";
 import ProductRepository from "./product.repository";
 import Id from "../../@shared/domain/value-object/id.value-object";
@@ -48,7 +48,7 @@ describe("ProductRepository test", () => {
         expect(productDb.updatedAt).toBeDefined();
     });
 
-    it("Should find a product", async () =>{
+    it("Should find a product", async () => {
         const productRepository = new ProductRepository();
         ProductModel.create({
             id: "1",

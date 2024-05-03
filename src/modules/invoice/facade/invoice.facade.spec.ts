@@ -1,6 +1,4 @@
 import { Sequelize } from "sequelize-typescript";
-import InvoiceItemModel from "../repository/invoice.item.model";
-import AddressModel from "../repository/address.model";
 import InvoiceModel from "../repository/invoice.model";
 import InvoiceRepository from "../repository/invoice.repository";
 import FindInvoiceUsecase from "../usecase/find-invoice/find-invoice.usecase";
@@ -19,7 +17,7 @@ describe("InvoiceFacade test", () => {
             sync: { force: true }
         });
 
-        await sequelize.addModels([InvoiceModel, AddressModel, InvoiceItemModel])
+        await sequelize.addModels([InvoiceModel])
         await sequelize.sync();
     });
 
@@ -117,7 +115,7 @@ describe("InvoiceFacade test", () => {
         expect(result.name).toBe(input.name);
         expect(result.document).toBe(input.document);
         expect(result.address.street).toBe(input.street);
-        expect(result.address.number).toBe(input.number);
+        expect(result.address.number.toString()).toBe(input.number);
         expect(result.address.complement).toBe(input.complement);
         expect(result.address.city).toBe(input.city);
         expect(result.address.state).toBe(input.state);

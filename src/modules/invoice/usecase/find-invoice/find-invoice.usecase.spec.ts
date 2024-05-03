@@ -18,7 +18,7 @@ const invoice = new Invoice({
     id: new Id("1"),
     name: "Name 1",
     document: "Document 1",
-    address: new Address("Street 1", 100, "Complement 1", "City 1", "State 1", "ZipCode 1"),
+    address: new Address("Street 1", "100", "Complement 1", "City 1", "State 1", "ZipCode 1"),
     items: [invoiceItem1, invoiceItem2]
 });
 

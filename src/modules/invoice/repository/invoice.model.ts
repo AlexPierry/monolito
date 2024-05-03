@@ -1,6 +1,12 @@
-import { BelongsTo, Column, ForeignKey, HasMany, Model, PrimaryKey, Table } from "sequelize-typescript";
-import AddressModel from "./address.model";
-import InvoiceItemModel from "./invoice.item.model";
+import { Column, DataType, Model, PrimaryKey, Table } from "sequelize-typescript";
+
+interface ItemData {
+    id: string;
+    name: string;
+    price: number;
+    createdAt: Date;
+    updatedAt: Date;
+}
 
 @Table({
     tableName: "invoices",
@@ -17,19 +23,30 @@ export default class InvoiceModel extends Model {
     @Column({ allowNull: false })
     declare document: string;
 
-    @ForeignKey(() => AddressModel)
-    @Column({ allowNull: false })
-    declare address_id: string;
-
-    @BelongsTo(() => AddressModel)
-    declare address: AddressModel;
-
-    @HasMany(() => InvoiceItemModel)
-    declare items: InvoiceItemModel[];
-
     @Column({ allowNull: false })
     declare createdAt: Date;
 
     @Column({ allowNull: false })
     declare updatedAt: Date;
+
+    @Column({ allowNull: false, type: DataType.JSON })
+    declare items: ItemData[];
+
+    @Column({ allowNull: false })
+    declare street: string;
+
+    @Column({ allowNull: false })
+    declare number: string;
+
+    @Column({ allowNull: false })
+    declare complement: string;
+
+    @Column({ allowNull: false })
+    declare city: string;
+
+    @Column({ allowNull: false })
+    declare state: string;
+
+    @Column({ allowNull: false })
+    declare zipcode: string;
 }

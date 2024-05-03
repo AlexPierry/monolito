@@ -92,5 +92,5 @@
     },
     "include": [
         "src/**/*.ts"
-    ]
+, "src/test-migrations/migrations/00.invoice-migration.ts", "00.address-migration.ts", "00.order-migration.ts", "src/test-migrations/migrations/00.transaction-migration.ts", "src/test-migrations/migrations/00.client-migration.ts"    ]
 }

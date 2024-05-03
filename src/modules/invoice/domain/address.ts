@@ -2,13 +2,13 @@ import BaseEntity from "../../@shared/domain/entity/base.entity";
 
 export default class Address extends BaseEntity {
     private _street: string;
-    private _number: number;
+    private _number: string;
     private _complement: string;
     private _city: string;
     private _state: string;
     private _zipCode: string;
 
-    constructor(street: string, number: number, complement: string, city: string, state: string, zipcode: string) {
+    constructor(street: string, number: string, complement: string, city: string, state: string, zipcode: string) {
         super();
         this._street = street;
         this._number = number;
@@ -22,7 +22,7 @@ export default class Address extends BaseEntity {
         return this._street;
     }
 
-    get number(): number {
+    get number(): string {
         return this._number;
     }
 

@@ -16,7 +16,7 @@ describe("Generate Invoice usecase unit test", () => {
             name: "Invoice 1",
             document: "Document 1",
             street: "Street 1",
-            number: 1,
+            number: "1",
             complement: "Complement 1",
             city: "City 1",
             state: "State 1",
